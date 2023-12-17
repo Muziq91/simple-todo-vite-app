@@ -1,8 +1,13 @@
+import ThemeToggle from './components/ThemeToggle';
+import { DarkModeProvider } from './context/DarkModeContext';
+
 function App() {
   return (
     <>
-      <button className="btn btn-primary">Primary</button>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>{' '}
+      <DarkModeProvider>
+        <ThemeToggle />
+        <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      </DarkModeProvider>
     </>
   );
 }
