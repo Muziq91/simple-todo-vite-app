@@ -6,18 +6,16 @@ function ThemeToggle() {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   return (
-    <>
-      <label className="swap swap-rotate">
-        <input
-          type="checkbox"
-          className="theme-controller"
-          checked={isDarkMode}
-          onChange={toggleDarkMode}
-        />
-        <SunIcon />
-        <MoonIcon />
-      </label>
-    </>
+    <label className="swap swap-rotate">
+      <input
+        type="checkbox"
+        className="theme-controller"
+        checked={isDarkMode}
+        onChange={toggleDarkMode}
+      />
+      <SunIcon />
+      <MoonIcon />
+    </label>
   );
 }
 

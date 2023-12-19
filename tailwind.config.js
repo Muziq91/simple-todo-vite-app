@@ -26,12 +26,11 @@ export default {
       },
       {
         customDark: {
-          ...require('daisyui/src/theming/themes')['dracula'],
-          primary: '#ffa7a7',
-          secondary: '#ffcbcb',
-          accent: '#c9fdff',
-          neutral: '#dffeff',
-          'base-content': 'black',
+          ...require('daisyui/src/theming/themes')['dark'],
+          primary: '#2d3641',
+          secondary: '#455364',
+          accent: '#657a92',
+          neutral: '#d8dde4',
         },
       },
     ],

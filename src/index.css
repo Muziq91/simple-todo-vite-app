@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: "arima";
-    src: url("../fonts/Arima Madurai Regular.ttf");
+  font-family: 'arima';
+  src: url('../fonts/Arima Madurai Regular.ttf');
 }
 
 @font-face {
-    font-family: "cherry";
-    src: url("../fonts/Cherry Cream Soda Regular.ttf");
+  font-family: 'cherry';
+  src: url('../fonts/Cherry Cream Soda Regular.ttf');
 }

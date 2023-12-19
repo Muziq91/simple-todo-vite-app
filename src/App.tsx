@@ -5,6 +5,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import SignInPage from './pages/SignInPage';
 import PageNotFoundPage from './pages/PageNotFoundPage';
 import DashboardPage from './pages/DashboardPage';
+import SignUpPage from './pages/SignUpPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import ChangePasswordPage from './pages/ChangePasswordPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -27,7 +30,11 @@ function App() {
                 <Route index element={<Navigate replace to="dashboard" />} />
                 <Route path="dashboard" element={<DashboardPage />} />
               </Route>
-              <Route path="signin" element={<SignInPage />} />
+              <Route path="sign-in" element={<SignInPage />} />
+              <Route path="sign-up" element={<SignUpPage />} />
+              <Route path="forgot-password" element={<ForgotPasswordPage />} />
+              <Route path="change-password" element={<ChangePasswordPage />} />
+
               <Route path="*" element={<PageNotFoundPage />} />
             </Routes>
           </BrowserRouter>
