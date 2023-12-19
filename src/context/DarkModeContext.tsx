@@ -22,9 +22,9 @@ function DarkModeProvider(props: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (isDarkMode) {
-      document.documentElement.setAttribute('data-theme', 'dark');
+      document.documentElement.setAttribute('data-theme', 'customDark');
     } else {
-      document.documentElement.setAttribute('data-theme', 'light');
+      document.documentElement.setAttribute('data-theme', 'customLight');
     }
   }, [isDarkMode]);
 
