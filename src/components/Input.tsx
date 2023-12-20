@@ -1,42 +1,41 @@
 import { ReactNode, useState } from 'react';
-import PasswordStrengthIndicator from './PasswordStrengthIndicator';
 
 type InputProps = {
-  id?: string;
-  name?: string;
-  label?: string;
-  type?: string;
   autoComplete?: string;
-  placeholder?: string;
-  errorMessage?: string;
   defaultValue?: string;
   disabled?: boolean;
-  withCounter?: boolean;
+  errorMessage?: string;
+  footerElement?: ReactNode;
+  id?: string;
+  label?: string;
   maxCount?: number;
-  topRightElement?: ReactNode;
+  name?: string;
   onValueChange?: (value: string) => void;
-  artifact?: 'None' | 'PasswordStrength';
+  placeholder?: string;
+  topRightElement?: ReactNode;
+  type?: string;
+  withCounter?: boolean;
 };
 
 function Input({
-  id = 'text_field',
-  name = 'text_field',
-  label = '',
-  type = 'text',
   autoComplete = '',
-  placeholder = '',
   defaultValue = '',
-  errorMessage = '',
   disabled = false,
-  withCounter = false,
+  errorMessage = '',
+  footerElement,
+  id = 'text_field',
+  label = '',
   maxCount = 20,
-  topRightElement,
+  name = 'text_field',
   onValueChange = () => {},
-  artifact = 'None',
+  placeholder = '',
+  topRightElement,
+  type = 'text',
+  withCounter = false,
 }: InputProps) {
   const [value, setValue] = useState(defaultValue);
   return (
-    <label className="form-control w-full max-w-xs p-2 m-2">
+    <label className="form-control m-2 w-full max-w-xs p-2">
       <div className="label" id={`input_label_${id}`}>
         <span className="label-text">{label}</span>
         <span className="label-text-alt">{topRightElement}</span>
@@ -64,9 +63,7 @@ function Input({
           <span className="label-text-alt">{`${value.length}/${maxCount}`}</span>
         )}
       </div>
-      {artifact === 'PasswordStrength' && (
-        <PasswordStrengthIndicator value={value} />
-      )}
+      {footerElement}
     </label>
   );
 }

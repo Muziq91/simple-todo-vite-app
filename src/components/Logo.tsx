@@ -6,7 +6,7 @@ function Logo() {
   return (
     <img
       alt="Simple ToDo App Logo"
-      className="w-auto h-36"
+      className="h-36 w-auto"
       src={
         isDarkMode
           ? 'icons/logo-transparent-light.png'

@@ -1,7 +1,7 @@
 function MoonIcon() {
   return (
     <svg
-      className="swap-off fill-current w-10 h-10"
+      className="swap-off h-10 w-10 fill-current"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
     >

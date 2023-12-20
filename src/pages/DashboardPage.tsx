@@ -6,10 +6,10 @@ function DashboardPage() {
       <ThemeToggle />
       <button className="btn btn-primary">Primary</button>
 
-      <article className="prose md:prose-lg lg:prose-xl  bg-primary font-arima">
+      <article className="prose bg-primary font-arima  md:prose-lg lg:prose-xl">
         {'DashboardPage Aa Bb Cc'}
       </article>
-      <article className="prose md:prose-lg lg:prose-xl bg-secondary font-cherry">
+      <article className="prose bg-secondary font-cherry md:prose-lg lg:prose-xl">
         {'DashboardPage Aa Bb Cc'}
       </article>
     </div>

@@ -20,25 +20,33 @@ const mediumPasswordReg = new RegExp(mediumPassword);
 
 function PasswordStrengthIndicator({ value }: PasswordStrengthIndicatorProps) {
   const [passwordStrength, setPasswordStrength] = useState('progress-error');
+  const [strengthPercentage, setStrengthPercentage] = useState(0);
 
   useEffect(() => {
     let newPasswordStrength = 'progress-error';
+    setStrengthPercentage(() => 25);
 
     if (mediumPasswordReg.test(value)) {
       newPasswordStrength = 'progress-warning';
+      setStrengthPercentage(() => 50);
     }
 
     if (strongPasswordReg.test(value)) {
       newPasswordStrength = 'progress-success';
+      setStrengthPercentage(() => 100);
     }
 
     setPasswordStrength(() => newPasswordStrength);
   }, [value]);
 
+  if (!value) {
+    return null;
+  }
+
   return (
     <progress
       className={`progress m-auto ${passwordStrength}`}
-      value="100"
+      value={strengthPercentage}
       max="100"
     ></progress>
   );

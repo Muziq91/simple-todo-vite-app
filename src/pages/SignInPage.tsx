@@ -2,46 +2,45 @@ import Heading from '../components/Heading';
 import Input from '../components/Input';
 import Logo from '../components/Logo';
 import Link from '../components/Link';
+import Form from '../components/Form';
+import { useState } from 'react';
 
 function SignInPage() {
+  const [passwordValue, setPasswordValue] = useState('');
+  const [emailValue, setEmailValue] = useState('');
+
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const data = new FormData(event.target);
 
-    const email = data.get('email');
-    const password = data.get('password');
-    console.log(email, password);
+    console.log(emailValue, passwordValue);
   }
   return (
-    <main className="min-h-screen min-w-screen flex flex-col justify-center items-center gap-6">
+    <main className="min-w-screen flex min-h-screen flex-col items-center justify-center gap-6">
       <Logo />
       <Heading as="h2">Sign into your account</Heading>
-      <form
-        onSubmit={handleFormSubmit}
-        className="bg-primary flex flex-col justify-center items-center h-fit w-96 rounded-lg p-4"
-      >
+      <Form onFormSubmit={handleFormSubmit}>
         <Input
-          id="email"
-          name="email"
-          label="Email address"
           autoComplete="username"
-          errorMessage=""
-          disabled={false}
+          defaultValue={emailValue}
+          id="email"
+          label="Email address"
+          name="email"
+          onValueChange={setEmailValue}
         />
         <Input
-          id="password"
-          name="password"
-          label="Password"
-          type="password"
           autoComplete="current-password"
-          errorMessage=""
-          disabled={false}
+          defaultValue={passwordValue}
+          id="password"
+          label="Password"
+          name="password"
+          onValueChange={setPasswordValue}
           topRightElement={<Link src="/forgot-password">Forgot password?</Link>}
+          type="password"
         />
         <button className="btn btn-secondary" type="submit">
           Sign in
         </button>
-      </form>
+      </Form>
       <Heading as="h4">
         Don’t have an account?
         <Link src="/sign-up">Sign Up</Link>
