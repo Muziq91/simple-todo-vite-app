@@ -1,7 +1,12 @@
 import React from 'react';
+import MotionMain from '../components/MotionMain';
 
 function ChangePasswordPage() {
-  return <div>ChangePasswordPage</div>;
+  return (
+    <MotionMain>
+      <div>ChangePasswordPage</div>
+    </MotionMain>
+  );
 }
 
 export default ChangePasswordPage;

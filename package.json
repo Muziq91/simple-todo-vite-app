@@ -17,6 +17,7 @@
     "@tanstack/react-query-devtools": "^5.14.1",
     "autoprefixer": "^10.4.16",
     "date-fns": "^2.30.0",
+    "framer-motion": "^10.16.16",
     "postcss": "^8.4.32",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

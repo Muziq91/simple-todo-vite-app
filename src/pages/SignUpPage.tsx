@@ -8,6 +8,7 @@ import PasswordStrengthIndicator from '../components/PasswordStrengthIndicator';
 import PasswordInstructions from '../components/PasswordInstructions';
 import Button from '../components/Button';
 import Typography from '../components/Typography';
+import MotionMain from '../components/MotionMain';
 
 function SignUpPage() {
   const [displayNameValue, setDisplayNameValue] = useState('');
@@ -19,7 +20,7 @@ function SignUpPage() {
   }
 
   return (
-    <main className="min-w-screen flex min-h-screen flex-col items-center justify-center gap-6 font-arima">
+    <MotionMain>
       <Logo />
       <Heading as="h1">Create a new account</Heading>
       <Form onFormSubmit={handleFormSubmit}>
@@ -63,11 +64,11 @@ function SignUpPage() {
           and <Link src="/code-of-conduct">code of conduct</Link>
         </Typography>
       </Form>
-      <Heading as="h4">
+      <Typography as="label">
         Already have an account?
         <Link src="/sign-in">Sign In</Link>
-      </Heading>
-    </main>
+      </Typography>
+    </MotionMain>
   );
 }
 

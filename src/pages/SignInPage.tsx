@@ -6,6 +6,7 @@ import Form from '../components/Form';
 import { useState } from 'react';
 import Button from '../components/Button';
 import Typography from '../components/Typography';
+import MotionMain from '../components/MotionMain';
 
 function SignInPage() {
   const [passwordValue, setPasswordValue] = useState('');
@@ -17,7 +18,7 @@ function SignInPage() {
     console.log(emailValue, passwordValue);
   }
   return (
-    <main className="min-w-screen flex min-h-screen flex-col items-center justify-center gap-6 font-arima">
+    <MotionMain>
       <Logo />
       <Heading as="h1">Sign into your account</Heading>
       <Form onFormSubmit={handleFormSubmit}>
@@ -47,7 +48,7 @@ function SignInPage() {
         Don’t have an account?
         <Link src="/sign-up">Sign Up</Link>
       </Typography>
-    </main>
+    </MotionMain>
   );
 }
 
