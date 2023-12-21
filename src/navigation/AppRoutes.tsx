@@ -1,5 +1,4 @@
 import { AnimatePresence } from 'framer-motion';
-import React from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import PolicyPage from '../pages/PolicyPage';
 import DashboardPage from '../pages/DashboardPage';

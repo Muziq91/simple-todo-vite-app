@@ -7,14 +7,16 @@ import { useState } from 'react';
 import Button from '../components/Button';
 import Typography from '../components/Typography';
 import MotionMain from '../components/MotionMain';
+import { useToast } from '../context/ToastContext';
 
 function SignInPage() {
   const [passwordValue, setPasswordValue] = useState('');
   const [emailValue, setEmailValue] = useState('');
+  const { showToast } = useToast();
 
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
+    showToast('Could not sign in the user', 'error');
     console.log(emailValue, passwordValue);
   }
   return (

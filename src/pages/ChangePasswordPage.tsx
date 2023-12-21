@@ -1,4 +1,3 @@
-import React from 'react';
 import MotionMain from '../components/MotionMain';
 
 function ChangePasswordPage() {
