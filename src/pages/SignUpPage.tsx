@@ -9,14 +9,22 @@ import PasswordInstructions from '../components/PasswordInstructions';
 import Button from '../components/Button';
 import Typography from '../components/Typography';
 import MotionMain from '../components/MotionMain';
+import { useSignUp } from '../hooks/useSignUp';
 
 function SignUpPage() {
+  const { signUp } = useSignUp();
   const [displayNameValue, setDisplayNameValue] = useState('');
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
 
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    signUp({
+      displayName: displayNameValue,
+      email: emailValue,
+      password: passwordValue,
+    });
   }
 
   return (
