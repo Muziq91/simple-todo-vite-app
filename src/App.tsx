@@ -8,6 +8,7 @@ import DashboardPage from './pages/DashboardPage';
 import SignUpPage from './pages/SignUpPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ChangePasswordPage from './pages/ChangePasswordPage';
+import PolicyPage from './pages/PolicyPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,7 +19,6 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  console.log(import.meta.env.VITE_APP_TITLE);
   return (
     <>
       <DarkModeProvider>
@@ -32,6 +32,19 @@ function App() {
               </Route>
               <Route path="sign-in" element={<SignInPage />} />
               <Route path="sign-up" element={<SignUpPage />} />
+              <Route
+                path="terms-of-service"
+                element={<PolicyPage as="TermsOfService" />}
+              />
+              <Route
+                path="privacy-policy"
+                element={<PolicyPage as="PrivacyPolicy" />}
+              />
+              <Route
+                path="code-of-conduct"
+                element={<PolicyPage as="CodeOfConduct" />}
+              />
+
               <Route path="forgot-password" element={<ForgotPasswordPage />} />
               <Route path="change-password" element={<ChangePasswordPage />} />
 

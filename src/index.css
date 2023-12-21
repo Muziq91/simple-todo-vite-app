@@ -5,9 +5,13 @@
 @font-face {
   font-family: 'arima';
   src: url('../fonts/Arima Madurai Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'cherry';
   src: url('../fonts/Cherry Cream Soda Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
 }

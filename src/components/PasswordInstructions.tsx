@@ -1,10 +1,12 @@
+import Typography from './Typography';
+
 function PasswordInstructions() {
   return (
     <div className="prose">
-      <p>
-        Passwords must be at least 8 characters and should contain at least one
+      <Typography as="subtitle">
+        Passwords must be at least 8 characters long and should contain one
         lowercase, uppercase letter, digits and symbols.
-      </p>
+      </Typography>
     </div>
   );
 }

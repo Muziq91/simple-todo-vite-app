@@ -6,6 +6,8 @@ import Form from '../components/Form';
 import { useState } from 'react';
 import PasswordStrengthIndicator from '../components/PasswordStrengthIndicator';
 import PasswordInstructions from '../components/PasswordInstructions';
+import Button from '../components/Button';
+import Typography from '../components/Typography';
 
 function SignUpPage() {
   const [displayNameValue, setDisplayNameValue] = useState('');
@@ -17,9 +19,9 @@ function SignUpPage() {
   }
 
   return (
-    <main className="min-w-screen flex min-h-screen flex-col items-center justify-center gap-6">
+    <main className="min-w-screen flex min-h-screen flex-col items-center justify-center gap-6 font-arima">
       <Logo />
-      <Heading as="h2">Sign into your account</Heading>
+      <Heading as="h1">Create a new account</Heading>
       <Form onFormSubmit={handleFormSubmit}>
         <Input
           autoComplete="nickname"
@@ -52,9 +54,14 @@ function SignUpPage() {
           onValueChange={setPasswordValue}
           type="password"
         />
-        <button className="btn btn-secondary" type="submit">
-          Sign up
-        </button>
+        <Button secondary>Sign up</Button>
+        <Typography as="subtitle">
+          By clicking “Sign up”, you agree to our
+          <Link src="/terms-of-service">terms of service</Link>
+          and acknowledge that you have read and understand our
+          <Link src="/privacy-policy">privacy policy</Link>
+          and <Link src="/code-of-conduct">code of conduct</Link>
+        </Typography>
       </Form>
       <Heading as="h4">
         Already have an account?

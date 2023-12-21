@@ -4,6 +4,8 @@ import Logo from '../components/Logo';
 import Link from '../components/Link';
 import Form from '../components/Form';
 import { useState } from 'react';
+import Button from '../components/Button';
+import Typography from '../components/Typography';
 
 function SignInPage() {
   const [passwordValue, setPasswordValue] = useState('');
@@ -15,9 +17,9 @@ function SignInPage() {
     console.log(emailValue, passwordValue);
   }
   return (
-    <main className="min-w-screen flex min-h-screen flex-col items-center justify-center gap-6">
+    <main className="min-w-screen flex min-h-screen flex-col items-center justify-center gap-6 font-arima">
       <Logo />
-      <Heading as="h2">Sign into your account</Heading>
+      <Heading as="h1">Sign into your account</Heading>
       <Form onFormSubmit={handleFormSubmit}>
         <Input
           autoComplete="username"
@@ -37,14 +39,14 @@ function SignInPage() {
           topRightElement={<Link src="/forgot-password">Forgot password?</Link>}
           type="password"
         />
-        <button className="btn btn-secondary" type="submit">
-          Sign in
-        </button>
+        <Button secondary>
+          <Typography as="label">Sign in</Typography>
+        </Button>
       </Form>
-      <Heading as="h4">
+      <Typography as="label">
         Don’t have an account?
         <Link src="/sign-up">Sign Up</Link>
-      </Heading>
+      </Typography>
     </main>
   );
 }
