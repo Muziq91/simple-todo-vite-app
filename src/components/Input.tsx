@@ -1,5 +1,6 @@
 import { ReactNode, useState } from 'react';
 import Typography from './Typography';
+import MotionDiv from './MotionDiv';
 
 type InputProps = {
   autoComplete?: string;
@@ -63,7 +64,7 @@ function Input({
         }}
       />
       <div className="flex">
-        <span className="flex-grow">
+        <MotionDiv className="flex-grow">
           <Typography
             as="subtitle"
             className="text-error"
@@ -71,7 +72,7 @@ function Input({
           >
             {errorMessage}
           </Typography>
-        </span>
+        </MotionDiv>
         <Typography as="subtitle" id={`input_error_${id}`}>
           {withCounter &&
             (!maxCount ? `${value.length}` : `${value.length}/${maxCount}`)}

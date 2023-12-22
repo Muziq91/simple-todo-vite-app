@@ -68,7 +68,7 @@ const initialState: SignUpFormState = {
 };
 
 function SignUpPage() {
-  const { signUp } = useSignUp();
+  const { signUp, isLoading } = useSignUp();
   const [state, dispatch] = useReducer(reducer, initialState);
 
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -98,6 +98,7 @@ function SignUpPage() {
         <Input
           autoComplete="nickname"
           defaultValue={state.displayName}
+          disabled={isLoading}
           errorMessage={state.displayNameValidation.errorMessages.join('\n')}
           id="display-name"
           label="Display Name"
@@ -114,6 +115,7 @@ function SignUpPage() {
         <Input
           autoComplete="username"
           defaultValue={state.email}
+          disabled={isLoading}
           errorMessage={state.emailValidation.errorMessages.join('\n')}
           id="email"
           label="Email address"
@@ -126,6 +128,7 @@ function SignUpPage() {
         <Input
           autoComplete="new-password"
           defaultValue={state.password}
+          disabled={isLoading}
           errorMessage={state.passwordValidation.errorMessages.join('\n')}
           footerElement={
             <>
@@ -140,10 +143,12 @@ function SignUpPage() {
           onValueChange={(passwordValue) =>
             dispatch({ type: 'changed_password', nextPassword: passwordValue })
           }
-          type="text"
+          type="password"
           withCounter
         />
-        <Button secondary>Sign up</Button>
+        <Button secondary isLoading={isLoading}>
+          Sign up
+        </Button>
         <Typography as="subtitle">
           By clicking “Sign up”, you agree to our
           <Link src="/terms-of-service">terms of service</Link>
