@@ -1,3 +1,4 @@
+import { ValidationResult } from '../types/validationResult';
 import {
   atLeast8CharReg,
   lowercaseLetterReg,
@@ -40,7 +41,7 @@ export function calculatePasswordStrength(password: string) {
   return { passwordStrength, strengthPercentage };
 }
 
-export function validatePassword(password: string) {
+export function validatePassword(password: string): ValidationResult {
   let isValid = true;
   let errorMessages: Array<string> = [];
 

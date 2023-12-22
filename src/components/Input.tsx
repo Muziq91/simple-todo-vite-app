@@ -1,4 +1,5 @@
 import { ReactNode, useState } from 'react';
+import Typography from './Typography';
 
 type InputProps = {
   autoComplete?: string;
@@ -61,14 +62,20 @@ function Input({
           onValueChange(newValue);
         }}
       />
-      <div className="label" id={`input_error_${id}`}>
-        <span className="label-text-alt text-error">{errorMessage}</span>
-        {withCounter &&
-          (!maxCount ? (
-            <span className="label-text-alt">{`${value.length}`}</span>
-          ) : (
-            <span className="label-text-alt">{`${value.length}/${maxCount}`}</span>
-          ))}
+      <div className="flex">
+        <span className="flex-grow">
+          <Typography
+            as="subtitle"
+            className="text-error"
+            id={`input_error_${id}`}
+          >
+            {errorMessage}
+          </Typography>
+        </span>
+        <Typography as="subtitle" id={`input_error_${id}`}>
+          {withCounter &&
+            (!maxCount ? `${value.length}` : `${value.length}/${maxCount}`)}
+        </Typography>
       </div>
       {footerElement}
     </label>

@@ -4,19 +4,20 @@ type TypographyProps = {
   as: 'label' | 'paragraph' | 'subtitle';
   className?: string;
   children?: ReactNode;
+  id?: string;
 };
 
-function Typography({ as, className, children }: TypographyProps) {
+function Typography({ as, className, children, id }: TypographyProps) {
   return (
-    <div className="prose">
+    <div className="prose" id={id}>
       {as === 'paragraph' && <p className={className}>{children}</p>}
       {as === 'label' && (
-        <label className="label">
+        <label className="label" id={id}>
           <span className={`label-text ${className}`}>{children}</span>
         </label>
       )}
       {as === 'subtitle' && (
-        <label className="label">
+        <label className="label" id={id}>
           <small className={`label-text-alt ${className}`}>{children}</small>
         </label>
       )}

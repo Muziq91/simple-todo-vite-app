@@ -3,7 +3,6 @@ import Input from '../components/Input';
 import Logo from '../components/Logo';
 import Link from '../components/Link';
 import Form from '../components/Form';
-import { useState } from 'react';
 import PasswordStrengthIndicator from '../components/PasswordStrengthIndicator';
 import PasswordInstructions from '../components/PasswordInstructions';
 import Button from '../components/Button';
@@ -13,25 +12,29 @@ import { useSignUp } from '../hooks/useSignUp';
 import { validateDisplayName, validateEmailAddress } from '../utils/textUtils';
 import { useReducer } from 'react';
 import { validatePassword } from '../utils/passwordUtils';
+import { SignUpFormAction, SignUpFormState } from '../types/signUpPageTypes';
 
-function reducer(state, action) {
+function reducer(
+  state: SignUpFormState,
+  action: SignUpFormAction,
+): SignUpFormState {
   switch (action.type) {
     case 'changed_display_name': {
       return {
         ...state,
-        displayName: action.nextDisplayName,
+        displayName: action.nextDisplayName || '',
       };
     }
     case 'changed_email': {
       return {
         ...state,
-        email: action.nextEmail,
+        email: action.nextEmail || '',
       };
     }
     case 'changed_password': {
       return {
         ...state,
-        password: action.nextPassword,
+        password: action.nextPassword || '',
       };
     }
     case 'validate_form': {
@@ -54,7 +57,7 @@ function reducer(state, action) {
       throw Error('Unknown action: ' + action.type);
   }
 }
-const initialState = {
+const initialState: SignUpFormState = {
   displayName: '',
   email: '',
   password: '',
@@ -70,16 +73,21 @@ function SignUpPage() {
 
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    dispatch({ type: 'validate_form' });
-    const nextState = reducer(state, { type: 'validate_form' });
 
-    if (nextState.isFormValid) {
-      signUp({
-        displayName: nextState.displayName,
-        email: nextState.email,
-        password: nextState.password,
-      });
+    const validateFormAction: SignUpFormAction = { type: 'validate_form' };
+
+    dispatch(validateFormAction);
+    const nextState = reducer(state, validateFormAction);
+
+    if (!nextState.isFormValid) {
+      return;
     }
+
+    signUp({
+      displayName: nextState.displayName,
+      email: nextState.email,
+      password: nextState.password,
+    });
   }
 
   return (

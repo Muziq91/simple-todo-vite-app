@@ -1,3 +1,4 @@
+import { ValidationResult } from '../types/validationResult';
 import {
   allUppercaseLettersReg,
   atLeast3CharReg,
@@ -6,7 +7,7 @@ import {
   validEmailAddressReg,
 } from './regexUtils';
 
-export function validateDisplayName(displayName: string) {
+export function validateDisplayName(displayName: string): ValidationResult {
   let isValid = true;
   const errorMessages: Array<string> = [];
 
@@ -33,7 +34,7 @@ export function validateDisplayName(displayName: string) {
   return { isValid, errorMessages };
 }
 
-export function validateEmailAddress(emailAddress: string) {
+export function validateEmailAddress(emailAddress: string): ValidationResult {
   let isValid = true;
   const errorMessages: Array<string> = [];
 
