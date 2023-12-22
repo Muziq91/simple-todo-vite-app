@@ -12,6 +12,7 @@ type InputProps = {
   name?: string;
   onValueChange?: (value: string) => void;
   placeholder?: string;
+  required?: boolean;
   topRightElement?: ReactNode;
   type?: string;
   withCounter?: boolean;
@@ -25,15 +26,17 @@ function Input({
   footerElement,
   id = 'text_field',
   label = '',
-  maxCount = 20,
+  maxCount,
   name = 'text_field',
   onValueChange = () => {},
   placeholder = '',
+  required = false,
   topRightElement,
   type = 'text',
   withCounter = false,
 }: InputProps) {
   const [value, setValue] = useState(defaultValue);
+
   return (
     <label className="form-control m-2 w-full max-w-xs p-2">
       <div className="label" id={`input_label_${id}`}>
@@ -49,6 +52,7 @@ function Input({
         id={`input_field_${id}`}
         name={name}
         placeholder={placeholder}
+        required={required}
         type={type}
         value={value}
         onChange={(event) => {
@@ -59,9 +63,12 @@ function Input({
       />
       <div className="label" id={`input_error_${id}`}>
         <span className="label-text-alt text-error">{errorMessage}</span>
-        {withCounter && (
-          <span className="label-text-alt">{`${value.length}/${maxCount}`}</span>
-        )}
+        {withCounter &&
+          (!maxCount ? (
+            <span className="label-text-alt">{`${value.length}`}</span>
+          ) : (
+            <span className="label-text-alt">{`${value.length}/${maxCount}`}</span>
+          ))}
       </div>
       {footerElement}
     </label>
