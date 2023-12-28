@@ -1,18 +1,17 @@
 import { useEffect, useRef } from 'react';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 import Typography from './Typography';
-import MotionDiv from './MotionDiv';
 
 type CustomCaptchaProps = {
   onChange: (token: string) => void;
   shouldReset: boolean;
-  errorMessage: string;
+  errorMessages: Array<string>;
 };
 
 function CustomCaptcha({
   onChange,
   shouldReset,
-  errorMessage,
+  errorMessages,
 }: CustomCaptchaProps) {
   const captchaRef = useRef(null);
 
@@ -22,6 +21,19 @@ function CustomCaptcha({
     }
   }, [shouldReset]);
 
+  function displayErrorMessages() {
+    return errorMessages.map((errorMessage) => (
+      <Typography
+        as="subtitle"
+        className="text-error"
+        id="input_error_captcha"
+        key={errorMessage}
+      >
+        {errorMessage}
+      </Typography>
+    ));
+  }
+
   return (
     <div className="form-control m-2 w-full max-w-xs p-2">
       <HCaptcha
@@ -30,15 +42,15 @@ function CustomCaptcha({
         onVerify={(token) => onChange(token)}
       />
       <div className="flex">
-        <MotionDiv className="flex-grow">
+        <div className="flex-grow">
           <Typography
             as="subtitle"
             className="text-error"
             id={`input_error_captcha`}
           >
-            {errorMessage}
+            {displayErrorMessages()}
           </Typography>
-        </MotionDiv>
+        </div>
       </div>
     </div>
   );

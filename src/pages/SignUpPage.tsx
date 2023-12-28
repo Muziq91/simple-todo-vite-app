@@ -126,7 +126,7 @@ function SignUpPage() {
           autoComplete="nickname"
           defaultValue={state.displayName}
           disabled={isLoading}
-          errorMessage={state.displayNameValidation.errorMessages.join('\n')}
+          errorMessages={state.displayNameValidation.errorMessages}
           id="display-name"
           label="Display Name"
           maxCount={30}
@@ -143,7 +143,7 @@ function SignUpPage() {
           autoComplete="username"
           defaultValue={state.email}
           disabled={isLoading}
-          errorMessage={state.emailValidation.errorMessages.join('\n')}
+          errorMessages={state.emailValidation.errorMessages}
           id="email"
           label="Email address"
           name="email"
@@ -156,7 +156,7 @@ function SignUpPage() {
           autoComplete="new-password"
           defaultValue={state.password}
           disabled={isLoading}
-          errorMessage={state.passwordValidation.errorMessages.join('\n')}
+          errorMessages={state.passwordValidation.errorMessages}
           footerElement={
             <>
               <PasswordStrengthIndicator value={state.password} />
@@ -180,7 +180,7 @@ function SignUpPage() {
               nextCaptchaToken: token,
             })
           }
-          errorMessage={state.captchaValidation.errorMessages.join('\n')}
+          errorMessages={state.captchaValidation.errorMessages}
           shouldReset={!state.captchaToken}
         />
         <Button secondary isLoading={isLoading}>

@@ -7,9 +7,15 @@ type TypographyProps = {
   id?: string;
 };
 
-function Typography({ as, className, children, id }: TypographyProps) {
+function Typography({
+  as,
+  className,
+  children,
+  id,
+  ...props
+}: TypographyProps) {
   return (
-    <div className="prose" id={id}>
+    <div className="prose" id={id} {...props}>
       {as === 'paragraph' && <p className={className}>{children}</p>}
       {as === 'label' && (
         <label className="label" id={id}>

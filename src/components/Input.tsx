@@ -1,12 +1,11 @@
 import { ReactNode, useState } from 'react';
 import Typography from './Typography';
-import MotionDiv from './MotionDiv';
 
 type InputProps = {
   autoComplete?: string;
   defaultValue?: string;
   disabled?: boolean;
-  errorMessage?: string;
+  errorMessages?: Array<string>;
   footerElement?: ReactNode;
   id?: string;
   label?: string;
@@ -24,7 +23,7 @@ function Input({
   autoComplete = '',
   defaultValue = '',
   disabled = false,
-  errorMessage = '',
+  errorMessages = [],
   footerElement,
   id = 'text_field',
   label = '',
@@ -38,6 +37,20 @@ function Input({
   withCounter = false,
 }: InputProps) {
   const [value, setValue] = useState(defaultValue);
+  const hasErrors = Array.isArray(errorMessages) && errorMessages.length > 0;
+
+  function displayErrorMessages() {
+    return errorMessages.map((errorMessage) => (
+      <Typography
+        as="subtitle"
+        className="text-error"
+        id={`input_error_${id}`}
+        key={errorMessage}
+      >
+        {errorMessage}
+      </Typography>
+    ));
+  }
 
   return (
     <label className="form-control m-2 w-full max-w-xs p-2">
@@ -48,7 +61,7 @@ function Input({
       <input
         autoComplete={autoComplete}
         className={`input input-bordered w-full max-w-xs ${
-          errorMessage && 'input-error'
+          hasErrors && 'input-error'
         }`}
         disabled={disabled}
         id={`input_field_${id}`}
@@ -64,15 +77,15 @@ function Input({
         }}
       />
       <div className="flex">
-        <MotionDiv className="flex-grow">
+        <div className="flex-grow">
           <Typography
             as="subtitle"
             className="text-error"
             id={`input_error_${id}`}
           >
-            {errorMessage}
+            {displayErrorMessages()}
           </Typography>
-        </MotionDiv>
+        </div>
         <Typography as="subtitle" id={`input_error_${id}`}>
           {withCounter &&
             (!maxCount ? `${value.length}` : `${value.length}/${maxCount}`)}
