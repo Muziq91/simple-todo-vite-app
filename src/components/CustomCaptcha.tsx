@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 import Typography from './Typography';
 

@@ -1,5 +1,5 @@
 import supabase from './supabase';
-import { CreateUserDto, UserEmailDto } from './types';
+import { CreateUserDto, ResetPasswordDto, UpdatePasswordDto } from './types';
 
 export async function signUp({
   displayName,
@@ -20,9 +20,22 @@ export async function signUp({
   return data;
 }
 
-export async function resetPassword({ email }: UserEmailDto) {
+export async function resetPassword({ email, captchaToken }: ResetPasswordDto) {
   const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+    captchaToken,
     redirectTo: import.meta.env.VITE_RESET_PASSWORD_PAGE,
+  });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
+export async function updatePassword({ password }: UpdatePasswordDto) {
+  const { data, error } = await supabase.auth.updateUser({
+    password,
   });
 
   if (error) {

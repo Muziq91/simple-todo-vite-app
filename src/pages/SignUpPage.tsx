@@ -79,6 +79,7 @@ function reducer(
       throw Error('Unknown action: ' + action.type);
   }
 }
+
 const initialState: SignUpFormState = {
   displayName: '',
   email: '',
@@ -118,7 +119,7 @@ function SignUpPage() {
   }
 
   return (
-    <MotionMain>
+    <MotionMain key={'signUpForm'}>
       <Logo />
       <Heading as="h1">Create a new account</Heading>
       <Form onFormSubmit={handleFormSubmit}>
