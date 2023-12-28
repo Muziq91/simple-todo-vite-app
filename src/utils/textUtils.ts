@@ -45,3 +45,14 @@ export function validateEmailAddress(emailAddress: string): ValidationResult {
 
   return { isValid, errorMessages };
 }
+
+export function validateCaptcha(captchaToken: string): ValidationResult {
+  let isValid = true;
+  const errorMessages: Array<string> = [];
+  if (!captchaToken) {
+    isValid = false;
+    errorMessages.push('Please check the captcha.');
+  }
+
+  return { isValid, errorMessages };
+}

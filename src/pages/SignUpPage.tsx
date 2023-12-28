@@ -9,10 +9,15 @@ import Button from '../components/Button';
 import Typography from '../components/Typography';
 import MotionMain from '../components/MotionMain';
 import { useSignUp } from '../hooks/useSignUp';
-import { validateDisplayName, validateEmailAddress } from '../utils/textUtils';
+import {
+  validateCaptcha,
+  validateDisplayName,
+  validateEmailAddress,
+} from '../utils/textUtils';
 import { useReducer } from 'react';
 import { validatePassword } from '../utils/passwordUtils';
 import { SignUpFormAction, SignUpFormState } from '../types/signUpPageTypes';
+import CustomCaptcha from '../components/CustomCaptcha';
 
 function reducer(
   state: SignUpFormState,
@@ -37,19 +42,36 @@ function reducer(
         password: action.nextPassword || '',
       };
     }
+    case 'change_captcha_token': {
+      return {
+        ...state,
+        captchaToken: action.nextCaptchaToken || '',
+      };
+    }
+    case 'reset_captcha': {
+      return {
+        ...state,
+        captchaToken: '',
+      };
+    }
     case 'validate_form': {
       const displayNameValidation = validateDisplayName(state.displayName);
       const emailValidation = validateEmailAddress(state.email);
       const passwordValidation = validatePassword(state.password);
+      const captchaValidation = validateCaptcha(state.captchaToken);
+
       const isFormValid =
         displayNameValidation.isValid &&
         emailValidation.isValid &&
-        passwordValidation.isValid;
+        passwordValidation.isValid &&
+        captchaValidation.isValid;
+
       return {
         ...state,
         displayNameValidation,
         emailValidation,
         passwordValidation,
+        captchaValidation,
         isFormValid,
       };
     }
@@ -61,14 +83,16 @@ const initialState: SignUpFormState = {
   displayName: '',
   email: '',
   password: '',
+  captchaToken: '',
   isFormValid: false,
-  displayNameValidation: { isValid: true, errorMessages: [] },
-  emailValidation: { isValid: true, errorMessages: [] },
-  passwordValidation: { isValid: true, errorMessages: [] },
+  displayNameValidation: { isValid: false, errorMessages: [] },
+  emailValidation: { isValid: false, errorMessages: [] },
+  passwordValidation: { isValid: false, errorMessages: [] },
+  captchaValidation: { isValid: false, errorMessages: [] },
 };
 
 function SignUpPage() {
-  const { signUp, isLoading } = useSignUp();
+  const { signUp, isLoading, isSuccess } = useSignUp();
   const [state, dispatch] = useReducer(reducer, initialState);
 
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -87,6 +111,7 @@ function SignUpPage() {
       displayName: nextState.displayName,
       email: nextState.email,
       password: nextState.password,
+      captchaToken: nextState.captchaToken,
     });
   }
 
@@ -145,6 +170,17 @@ function SignUpPage() {
           }
           type="password"
           withCounter
+        />
+        <CustomCaptcha
+          onChange={(token) =>
+            dispatch({
+              type: 'change_captcha_token',
+              nextCaptchaToken: token,
+            })
+          }
+          onReset={() => dispatch({ type: 'reset_captcha' })}
+          errorMessage={state.captchaValidation.errorMessages.join('\n')}
+          shouldReset={isSuccess}
         />
         <Button secondary isLoading={isLoading}>
           Sign up

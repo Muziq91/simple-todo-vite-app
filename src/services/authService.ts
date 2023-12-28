@@ -1,11 +1,16 @@
 import supabase from './supabase';
 import { CreateUserDto, UserEmailDto } from './types';
 
-export async function signUp({ displayName, email, password }: CreateUserDto) {
+export async function signUp({
+  displayName,
+  email,
+  password,
+  captchaToken,
+}: CreateUserDto) {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
-    options: { data: { displayName, avatar: '' } },
+    options: { captchaToken, data: { displayName, avatar: '' } },
   });
 
   if (error) {

@@ -6,9 +6,18 @@ import { useToast } from '../context/ToastContext';
 export function useSignUp() {
   const { showToast } = useToast();
 
-  const { mutate: signUp, isPending } = useMutation({
-    mutationFn: ({ email, password, displayName }: CreateUserDto) =>
-      signUpApi({ email, password, displayName }),
+  const {
+    mutate: signUp,
+    isPending,
+    isSuccess,
+  } = useMutation({
+    mutationFn: ({
+      email,
+      password,
+      displayName,
+      captchaToken,
+    }: CreateUserDto) =>
+      signUpApi({ email, password, displayName, captchaToken }),
     onSuccess() {
       showToast(
         'Sign up was successful, please verify your email and afterwards use the sign in page to access your account',
@@ -21,5 +30,5 @@ export function useSignUp() {
     },
   });
 
-  return { signUp, isLoading: isPending };
+  return { signUp, isLoading: isPending, isSuccess };
 }
