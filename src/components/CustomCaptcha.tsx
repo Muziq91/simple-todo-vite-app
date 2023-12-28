@@ -18,7 +18,6 @@ function CustomCaptcha({
 
   useEffect(() => {
     if (shouldReset) {
-      console.log('reseting');
       captchaRef.current?.resetCaptcha();
     }
   }, [shouldReset]);
