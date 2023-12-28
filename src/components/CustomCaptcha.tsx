@@ -5,14 +5,12 @@ import MotionDiv from './MotionDiv';
 
 type CustomCaptchaProps = {
   onChange: (token: string) => void;
-  onReset: () => void;
   shouldReset: boolean;
   errorMessage: string;
 };
 
 function CustomCaptcha({
   onChange,
-  onReset,
   shouldReset,
   errorMessage,
 }: CustomCaptchaProps) {
@@ -20,10 +18,10 @@ function CustomCaptcha({
 
   useEffect(() => {
     if (shouldReset) {
+      console.log('reseting');
       captchaRef.current?.resetCaptcha();
-      onReset();
     }
-  }, [shouldReset, onReset]);
+  }, [shouldReset]);
 
   return (
     <div className="form-control m-2 w-full max-w-xs p-2">

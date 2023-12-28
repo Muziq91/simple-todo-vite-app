@@ -92,7 +92,7 @@ const initialState: SignUpFormState = {
 };
 
 function SignUpPage() {
-  const { signUp, isLoading, isSuccess } = useSignUp();
+  const { signUp, isLoading } = useSignUp();
   const [state, dispatch] = useReducer(reducer, initialState);
 
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -113,6 +113,8 @@ function SignUpPage() {
       password: nextState.password,
       captchaToken: nextState.captchaToken,
     });
+
+    dispatch({ type: 'reset_captcha' });
   }
 
   return (
@@ -178,9 +180,8 @@ function SignUpPage() {
               nextCaptchaToken: token,
             })
           }
-          onReset={() => dispatch({ type: 'reset_captcha' })}
           errorMessage={state.captchaValidation.errorMessages.join('\n')}
-          shouldReset={isSuccess}
+          shouldReset={!state.captchaToken}
         />
         <Button secondary isLoading={isLoading}>
           Sign up
