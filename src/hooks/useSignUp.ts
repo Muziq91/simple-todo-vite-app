@@ -10,7 +10,10 @@ export function useSignUp() {
     mutationFn: ({ email, password, displayName }: CreateUserDto) =>
       signUpApi({ email, password, displayName }),
     onSuccess() {
-      showToast('Sign up was successful', 'success');
+      showToast(
+        'Sign up was successful, please verify your email and afterwards use the sign in page to access your account',
+        'success',
+      );
     },
     onError(error) {
       console.log(error);

@@ -3,7 +3,7 @@ import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import PolicyPage from '../pages/PolicyPage';
 import DashboardPage from '../pages/DashboardPage';
 import SignInPage from '../pages/SignInPage';
-import ChangePasswordPage from '../pages/ChangePasswordPage';
+import ResetPasswordPage from '../pages/ResetPasswordPage';
 import ForgotPasswordPage from '../pages/ForgotPasswordPage';
 import PageNotFoundPage from '../pages/PageNotFoundPage';
 import SignUpPage from '../pages/SignUpPage';
@@ -34,7 +34,7 @@ function AppRoutes() {
         />
 
         <Route path="forgot-password" element={<ForgotPasswordPage />} />
-        <Route path="change-password" element={<ChangePasswordPage />} />
+        <Route path="reset-password" element={<ResetPasswordPage />} />
 
         <Route path="*" element={<PageNotFoundPage />} />
       </Routes>

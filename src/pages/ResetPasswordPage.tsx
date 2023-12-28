@@ -1,11 +1,11 @@
 import MotionMain from '../components/MotionMain';
 
-function ChangePasswordPage() {
+function ResetPasswordPage() {
   return (
     <MotionMain>
-      <div>ChangePasswordPage</div>
+      <div>ResetPasswordPage</div>
     </MotionMain>
   );
 }
 
-export default ChangePasswordPage;
+export default ResetPasswordPage;
