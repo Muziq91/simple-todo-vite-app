@@ -1,3 +1,11 @@
+export type UserDto = {
+  id?: string;
+  email?: string;
+  role?: string;
+  displayName?: string;
+  avatar?: string;
+};
+
 export type CreateUserDto = {
   email: string;
   password: string;

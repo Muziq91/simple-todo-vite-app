@@ -19,8 +19,10 @@ export function useSignIn() {
     onSuccess(res) {
       // Using query data for caching the user
       queryClient.setQueryData(['user'], res.user);
-      console.log(res.user);
-      showToast(`Welcome back ${res.user.email}`, 'success');
+      showToast(
+        `Welcome back ${res.user.user_metadata.displayName}`,
+        'success',
+      );
       // Navigating and replacing current entry in history stack
       navigate('/dashboard', { replace: true });
     },

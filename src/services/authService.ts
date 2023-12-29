@@ -1,3 +1,4 @@
+import { mapAuthenticatedUserToDto } from '../mappers/mapAuthenticatedUserToDto';
 import supabase from './supabase';
 import {
   CreateUserDto,
@@ -77,5 +78,5 @@ export async function getCurrentUser() {
     throw new Error(error.message);
   }
 
-  return userData?.user;
+  return mapAuthenticatedUserToDto(userData?.user);
 }
