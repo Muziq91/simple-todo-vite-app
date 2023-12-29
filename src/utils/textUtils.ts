@@ -46,6 +46,18 @@ export function validateEmailAddress(emailAddress: string): ValidationResult {
   return { isValid, errorMessages };
 }
 
+export function validateTextNotToBeEmpty(text: string): ValidationResult {
+  let isValid = true;
+  const errorMessages: Array<string> = [];
+
+  if (!text || text === '') {
+    isValid = false;
+    errorMessages.push('This value cannot be empty.');
+  }
+
+  return { isValid, errorMessages };
+}
+
 export function validateCaptcha(captchaToken: string): ValidationResult {
   let isValid = true;
   const errorMessages: Array<string> = [];

@@ -5,6 +5,12 @@ export type CreateUserDto = {
   captchaToken: string;
 };
 
+export type SignInUserDto = {
+  email: string;
+  password: string;
+  captchaToken: string;
+};
+
 export type ResetPasswordDto = {
   email: string;
   captchaToken: string;

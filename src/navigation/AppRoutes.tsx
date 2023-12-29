@@ -7,6 +7,8 @@ import ResetPasswordPage from '../pages/ResetPasswordPage';
 import ForgotPasswordPage from '../pages/ForgotPasswordPage';
 import PageNotFoundPage from '../pages/PageNotFoundPage';
 import SignUpPage from '../pages/SignUpPage';
+import ProtectedRoute from './ProtectedRoute';
+import AppLayout from '../components/AppLayout';
 
 function AppRoutes() {
   const location = useLocation();
@@ -14,12 +16,20 @@ function AppRoutes() {
   return (
     <AnimatePresence mode="wait" initial={false}>
       <Routes location={location} key={location.pathname}>
-        <Route>
+        <Route
+          element={
+            <ProtectedRoute>
+              <AppLayout></AppLayout>
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<Navigate replace to="dashboard" />} />
           <Route path="dashboard" element={<DashboardPage />} />
         </Route>
+
         <Route path="sign-in" element={<SignInPage />} />
         <Route path="sign-up" element={<SignUpPage />} />
+
         <Route
           path="terms-of-service"
           element={<PolicyPage as="TermsOfService" />}

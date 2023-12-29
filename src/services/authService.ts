@@ -1,5 +1,10 @@
 import supabase from './supabase';
-import { CreateUserDto, ResetPasswordDto, UpdatePasswordDto } from './types';
+import {
+  CreateUserDto,
+  ResetPasswordDto,
+  SignInUserDto,
+  UpdatePasswordDto,
+} from './types';
 
 export async function signUp({
   displayName,
@@ -11,6 +16,20 @@ export async function signUp({
     email,
     password,
     options: { captchaToken, data: { displayName, avatar: '' } },
+  });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
+export async function signIn({ email, password, captchaToken }: SignInUserDto) {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+    options: { captchaToken },
   });
 
   if (error) {
@@ -43,4 +62,20 @@ export async function updatePassword({ password }: UpdatePasswordDto) {
   }
 
   return data;
+}
+
+export async function getCurrentUser() {
+  const { data: sessionData } = await supabase.auth.getSession();
+
+  if (!sessionData.session) {
+    return {};
+  }
+
+  const { data: userData, error } = await supabase.auth.getUser();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return userData?.user;
 }
